@@ -1,0 +1,227 @@
+<div id="page-audit" class="page-audit">
+
+  <!-- ════ HERO ════ -->
+  <div class="audit-hero-section">
+    <!-- Animated 3D grid background -->
+    <canvas id="auditCanvas3d" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.55"></canvas>
+    <div class="audit-tag" style="position:relative;z-index:1"><span class="adot"></span><span>Audit gratuit &amp; instantané</span></div>
+    <h1 class="audit-h1" style="position:relative;z-index:1">Votre site est-il vraiment visible sur Google <em>et l'IA ?</em></h1>
+    <p class="audit-h1-sub" style="position:relative;z-index:1;color:#ffffff;font-weight:500;">Entrez l'adresse de votre site. Nous l'analysons en temps réel — performance, SEO technique, accessibilité et bonnes pratiques — et vous livrons un score détaillé, gratuitement.</p>
+  </div>
+
+  <!-- ════ FORM CARD ════ -->
+  <div class="audit-form-wrap2">
+    <div class="audit-card">
+
+      <div id="audit-form-content">
+        <div class="afield">
+          <label class="afield-label" style="color:#ffffff;font-weight:700">Nom de domaine / URL de votre site *</label>
+          <input class="afield-input" type="url" id="audit-url-new" placeholder="https://www.votresite.fr" autocomplete="url" />
+        </div>
+        <div class="afield">
+          <label class="afield-label" style="color:#ffffff;font-weight:700">Nom de votre entreprise</label>
+          <input class="afield-input" type="text" id="audit-name-new" placeholder="Ex: Boulangerie Martin, Cabinet Dupont…" />
+        </div>
+        <button class="asubmit-btn" onclick="startAuditSPA()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Analyser mon site gratuitement
+        </button>
+        <div class="argpd-block">
+          <div class="argpd-row">
+            <span class="argpd-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D16C" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <span class="argpd-txt">Aucune donnée revendue</span>
+          </div>
+          <div class="argpd-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D16C" stroke-width="2.5" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <span class="argpd-txt">Analyse 100% automatique</span>
+          </div>
+          <div class="argpd-row">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#34D16C" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span class="argpd-txt">Conforme RGPD</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div class="aloading" id="audit-loading-new">
+        <div class="aspinner"></div>
+        <div class="aloading-step" id="audit-loading-step" style="color:#ffffff">Connexion à l'analyseur…</div>
+        <div class="aloading-bar-wrap"><div class="aloading-bar" id="audit-loading-bar"></div></div>
+      </div>
+
+      <!-- Results -->
+      <div class="aresult" id="audit-result-new">
+        <div class="asource-badge" style="color:#ffffff">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          Résultats basés sur Google PageSpeed Insights &amp; analyse IA
+        </div>
+
+        <div class="aglobal-score">
+          <div class="aring-wrap">
+            <div class="aring-bg"></div>
+            <svg class="aring-svg" viewBox="0 0 100 100">
+              <circle class="aring-track" cx="50" cy="50" r="45"/>
+              <circle class="aring-fill" id="aring-fill" cx="50" cy="50" r="45"/>
+            </svg>
+            <div class="aring-val">
+              <div class="aring-num" id="aring-num" style="color:#ffffff">—</div>
+              <div class="aring-label" style="color:rgba(255,255,255,0.55)">/ 100</div>
+            </div>
+          </div>
+          <div class="aglobal-title" id="aglobal-title" style="color:#ffffff;font-size:18px;font-weight:800">Score global</div>
+          <div class="aglobal-sub" id="aglobal-sub" style="color:rgba(255,255,255,0.6)">En attente d'analyse…</div>
+        </div>
+
+        <div class="ascores-wrap" id="ascores-list"></div>
+
+        <div class="acta-block">
+          <h3 style="color:#ffffff">🚀 Améliorons votre score ensemble</h3>
+          <p style="color:#ffffff;opacity:0.85">Notre équipe Alpha Korner peut corriger chacun de ces points et propulser votre site en tête des résultats Google. Devis gratuit, réponse sous 24h.</p>
+          <a href="tel:+33353630332" class="acta-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Obtenir mon audit complet
+          </a>
+          <br>
+          <button class="aretry-btn" onclick="resetAuditSPA()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+            <span style="color:rgba(255,255,255,0.75)">Tester un autre site</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ HOW IT WORKS ════ -->
+  <div class="ahow-wrap" id="audit-how-wrap">
+    <div class="ahow-title" style="color:#ffffff;font-weight:800;font-size:16px;letter-spacing:-0.3px">Comment ça marche</div>
+    <div class="ahow-steps">
+      <div class="ahow-step">
+        <div class="ahow-num">1</div>
+        <div class="ahow-text" style="color:#ffffff"><strong style="color:#ffffff">Entrez votre URL</strong><span style="color:rgba(255,255,255,0.75);display:block;font-size:12px;margin-top:2px">L'adresse complète de votre site web</span></div>
+      </div>
+      <div class="ahow-step">
+        <div class="ahow-num">2</div>
+        <div class="ahow-text" style="color:#ffffff"><strong style="color:#ffffff">Analyse en direct</strong><span style="color:rgba(255,255,255,0.75);display:block;font-size:12px;margin-top:2px">Via Google PageSpeed + analyse IA</span></div>
+      </div>
+      <div class="ahow-step">
+        <div class="ahow-num">3</div>
+        <div class="ahow-text" style="color:#ffffff"><strong style="color:#ffffff">Recevez votre score</strong><span style="color:rgba(255,255,255,0.75);display:block;font-size:12px;margin-top:2px">Performance, SEO, accessibilité et bonnes pratiques</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ SECTION SERVICES EXTRA ════ -->
+  <section class="aservices-section">
+
+    <!-- Section header -->
+    <div class="aservices-header">
+      <div class="aservices-tag">
+        <span class="adot2"></span>
+        <span style="color:#ffffff">Nos expertises complètes</span>
+      </div>
+      <h2 class="aservices-h2">Au-delà de l'audit, nous construisons <em>des solutions qui transforment votre activité</em></h2>
+      <p class="aservices-sub" style="color:rgba(255,255,255,0.8)">Logiciels de jeux &amp; fidélisation, outils internes sur mesure, sites IA avec animations 3D 4K — tout ce dont votre entreprise a besoin pour dominer en 2026.</p>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="aservices-grid">
+
+      <!-- Card 1 : Jeux & Fidélisation -->
+      <div class="asvc-card asvc-card--gaming" data-tilt>
+        <div class="asvc-card-glow asvc-card-glow--purple"></div>
+        <div class="asvc-card-inner">
+          <div class="asvc-icon-wrap asvc-icon--gaming">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="12" rx="3"/><path d="M6 12h4M8 10v4"/><circle cx="15" cy="11" r="1" fill="currentColor"/><circle cx="18" cy="13" r="1" fill="currentColor"/></svg>
+          </div>
+          <div class="asvc-badge asvc-badge--purple">Fidélisation</div>
+          <h3 class="asvc-title" style="color:#ffffff">Logiciels de jeux &amp; gamification</h3>
+          <p class="asvc-desc" style="color:rgba(255,255,255,0.72)">Roues à cadeaux, programmes de points, quiz interactifs, concours digitaux — des expériences ludiques qui transforment vos visiteurs en clients fidèles et boostent vos revenus.</p>
+          <ul class="asvc-feats">
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">Roue gagnante QR code</span></li>
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">Programme de fidélité digital</span></li>
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">Quiz &amp; concours sur mesure</span></li>
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">Dashboard analytics temps réel</span></li>
+          </ul>
+          <button class="asvc-btn" onclick="showPage('home');setTimeout(openCallModal,200)">Démarrer un projet →</button>
+        </div>
+      </div>
+
+      <!-- Card 2 : Logiciels internes -->
+      <div class="asvc-card asvc-card--internal" data-tilt>
+        <div class="asvc-card-glow asvc-card-glow--blue"></div>
+        <div class="asvc-card-inner">
+          <div class="asvc-icon-wrap asvc-icon--internal">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div class="asvc-badge asvc-badge--blue">Entreprise</div>
+          <h3 class="asvc-title" style="color:#ffffff">Logiciels internes sur mesure</h3>
+          <p class="asvc-desc" style="color:rgba(255,255,255,0.72)">CRM, ERP, outils de gestion RH, tableaux de bord opérationnels — des logiciels taillés exactement pour vos processus métier, pas l'inverse. Zéro compromis, 100% adapté.</p>
+          <ul class="asvc-feats">
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">CRM &amp; ERP personnalisés</span></li>
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">Gestion RH &amp; planning</span></li>
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">Automatisation des processus</span></li>
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">Intégrations API &amp; données</span></li>
+          </ul>
+          <button class="asvc-btn" onclick="showPage('home');setTimeout(openCallModal,200)">Démarrer un projet →</button>
+        </div>
+      </div>
+
+      <!-- Card 3 : Sites IA + 3D 4K -->
+      <div class="asvc-card asvc-card--ai" data-tilt>
+        <div class="asvc-card-glow asvc-card-glow--green"></div>
+        <div class="asvc-card-inner">
+          <div class="asvc-icon-wrap asvc-icon--ai">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <div class="asvc-badge asvc-badge--green">2026 Ready</div>
+          <h3 class="asvc-title" style="color:#ffffff">Sites web IA + animations 3D 4K</h3>
+          <p class="asvc-desc" style="color:rgba(255,255,255,0.72)">Des sites d'une qualité visuelle exceptionnelle : shaders WebGL, particules 3D, transitions cinématiques 4K, IA intégrée. Le niveau des plus grandes marques mondiales, pour votre entreprise.</p>
+          <ul class="asvc-feats">
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">Animations WebGL &amp; Three.js</span></li>
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">Rendu 3D temps réel 4K</span></li>
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">IA conversationnelle intégrée</span></li>
+            <li><span class="asvc-check">✓</span><span style="color:rgba(255,255,255,0.8)">Score Lighthouse 95+ garanti</span></li>
+          </ul>
+          <button class="asvc-btn asvc-btn--featured" onclick="showPage('home');setTimeout(openCallModal,200)">Démarrer un projet →</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA strip -->
+    <div class="aservices-cta-strip">
+      <div class="aservices-cta-text">
+        <span style="color:#ffffff;font-weight:700;font-size:clamp(14px,2.5vw,18px);display:block;text-wrap:balance">Une idée ? Un besoin ? Un projet ?</span>
+        <span style="color:rgba(255,255,255,0.85);font-size:14px;display:block;margin-top:4px">Notre équipe vous répond sous 24h — devis gratuit et sans engagement.</span>
+      </div>
+      <a href="tel:+33353630332" class="aservices-cta-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.81a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Appeler Alpha Korner
+      </a>
+    </div>
+
+  </section>
+
+  <!-- ════ FOOTER AUDIT ════ -->
+  <footer class="audit-footer-full">
+    <a href="#" onclick="showPage('home');window.scrollTo(0,0);return false;" class="nav-logo-svg" style="justify-content:center;position:relative;z-index:1;margin-bottom:16px">
+      <svg class="ak-logo-mark" viewBox="0 0 38 38" fill="none">
+        <circle cx="19" cy="19" r="18" stroke="rgba(255,255,255,0.3)" stroke-width="2.5"/>
+        <rect x="24" y="6" width="3.5" height="22" rx="1.75" fill="#34D16C"/>
+        <path d="M24 19C24 22.866 20.866 26 17 26C13.134 26 10 22.866 10 19C10 15.134 13.134 12 17 12C20.866 12 24 15.134 24 19Z" stroke="rgba(255,255,255,0.8)" stroke-width="2.5"/>
+        <circle cx="17" cy="19" r="4" fill="white"/>
+      </svg>
+      <div class="ak-logo-wordmark" style="color:#ffffff">Alpha<span style="color:var(--green)">Korner</span></div>
+    </a>
+    <p style="color:#ffffff;font-size:13px;margin-bottom:6px;font-weight:500">Agence web &amp; logiciels sur mesure — Strasbourg, Alsace, Grand Est</p>
+    <p style="color:rgba(255,255,255,0.8);font-size:12px;margin-bottom:4px">Site créé avec ♥️ par Brice Jacotet</p>
+    <p style="color:rgba(255,255,255,0.75);font-size:11px">© 2026 Alpha Korner — Tous droits réservés</p>
+  </footer>
+
+</div>
+
+</div>
+
+</div>

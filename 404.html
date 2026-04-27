@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Alpha Korner</title>
+  <!--
+    ╔══════════════════════════════════════════════════════════════════╗
+    ║         GITHUB PAGES — SPA ROUTING HACK (404.html)              ║
+    ║                                                                   ║
+    ║  GitHub Pages ne fait pas de URL rewriting côté serveur.        ║
+    ║  Quand quelqu'un accède à /demo ou /audit directement,          ║
+    ║  GitHub retourne ce fichier 404.html au lieu d'une vraie 404.   ║
+    ║  Ce script lit l'URL, la convertit en hash, et redirige         ║
+    ║  vers index.html#demo (ou #audit, #services…).                  ║
+    ║                                                                   ║
+    ║  Résultat : aucune erreur visible pour le visiteur.              ║
+    ║  NE PAS SUPPRIMER CE FICHIER.                                    ║
+    ╚══════════════════════════════════════════════════════════════════╝
+  -->
+  <script>
+    // Mapping des anciens chemins /demo → #demo etc.
+    const pathToHash = {
+      '/demo':     '#demo',
+      '/audit':    '#audit',
+      '/services': '#services',
+    };
+    const path = window.location.pathname;
+    const hash = pathToHash[path] || '';
+    // Redirection vers index.html avec le bon hash
+    window.location.replace(
+      window.location.origin + '/' + hash
+    );
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/">
+  </noscript>
+</head>
+<body>
+  <!-- Contenu minimal > 512 bytes pour éviter que IE remplace cette page -->
+  <!-- Alpha Korner — Agence Web & Logiciels Sur Mesure — Strasbourg -->
+  <!-- Redirection en cours vers la bonne page... -->
+  <p style="font-family:sans-serif;text-align:center;margin-top:80px;color:#6b7280">
+    Chargement…
+  </p>
+  <!-- padding to exceed 512 bytes .................................................. -->
+  <!-- ....................................................................................... -->
+  <!-- ....................................................................................... -->
+</body>
+</html>
